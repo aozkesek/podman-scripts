@@ -1,0 +1,30 @@
+FROM ao/devop:f34
+
+ENV JENKINS_HOME="/var/www/jenkins" 
+ENV GRADLE_HOME="/opt/gradle"
+ENV JAVA_HOME="/opt/jdk"
+ENV PATH="$GRADLE_HOME/bin:$JAVA_HOME/bin:$PATH"
+
+COPY jenkins.war /var/www/
+COPY gradle /opt/gradle/
+COPY jdk-11 /opt/jdk/
+
+RUN set -xe ; \
+	# make sure gradle is executable
+	chmod +x $GRADLE_HOME/bin/gradle; \
+	#
+	# create jenkins folder
+	mkdir -p $JENKINS_HOME ; \
+	#
+	# install required packages for jenkins
+	dnf install -y git freetype xorg-x11-fonts-Type1; \
+	#
+	# do basic tests
+	java -jar /var/www/jenkins.war --usage ; \
+	gradle -version ;
+
+VOLUME [ "$JENKINS_HOME" ]
+WORKDIR /var/www/
+EXPOSE 8080
+
+CMD java -jar jenkins.war

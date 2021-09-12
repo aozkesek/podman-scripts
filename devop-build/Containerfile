@@ -1,0 +1,9 @@
+FROM fedora:34
+
+RUN set -xe ; \
+	#
+	# install some utility packages
+	dnf install --refresh -y iputils findutils;
+
+CMD /usr/bin/bash
+
