@@ -6,7 +6,7 @@ podman run -it --rm \
 	--hostname devopsc \
 	--dns "192.167.55.1" \
 	--ip "192.167.55.140" \
-	-p 9418:9418 \
+	-p 8080:8080 \
 	--replace=true \
-	--volume devopsc:/var/git \
+	--volume devopsc:/var/gitrepo \
 	ao/devopsc

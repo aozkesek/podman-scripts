@@ -7,5 +7,4 @@ podman run -it --rm \
 	--dns "192.167.55.1" \
 	--ip "192.167.55.150" \
 	--replace=true \
-	ao/devop:f34 \
-	"/usr/bin/bash"
+	ao/devop:alpine3 

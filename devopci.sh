@@ -6,7 +6,7 @@ podman run -it --rm \
 	--hostname devopci \
 	--dns "192.167.55.1" \
 	--ip "192.167.55.130" \
-	-p 8080:8080 \
+	-p 8010:8010 \
 	--replace=true \
-	--volume devopci:/var/www/jenkins \
-	ao/devopci
+	--volume devopci:/var/buildbot \
+	ao/devopci $1 $2 $3
