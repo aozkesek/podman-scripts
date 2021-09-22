@@ -1,0 +1,12 @@
+#!/bin/bash
+
+[ ! -d $MASTER ] && { \
+	buildbot create-master $MASTER; \
+	cat /tmp/master.cfg > $MASTER/master.cfg; \
+	}
+buildbot start $MASTER
+
+[ ! -d $WORKER ] && { \
+	buildbot-worker create-worker $WORKER localhost localuser local; \
+	}
+buildbot-worker start $WORKER
