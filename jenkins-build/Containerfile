@@ -12,6 +12,8 @@ RUN set -xe ; \
 	# extract war
 	xz -d /tmp/jenkins.tar.xz; \
 	tar xvf /tmp/jenkins.tar -C /var/www; \
+	chown root /var/www/jenkins.war; \
+	chgrp root /var/www/jenkins.war; \
 	#
 	# install required packages for jenkins
 	apk add freetype font-xfree86-type1; \

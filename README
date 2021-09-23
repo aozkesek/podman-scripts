@@ -1,16 +1,23 @@
 Making a Devops container farm with Podman
 
 Containers
-	All container images are built very much beginning from the Alpine:3 image.
+	All container images are built from the Alpine:3 image. Use Alpine 
+	Package Manager, "apk add", to install new packages.
 
+	devop-build: 
+		The base container image that containes development tools like 
+		git, gcc, make, jdk-11, gradle.  You can add others upon you 
+		need with "apk add <packagename>" alpine package manager.
+		
+		The other CI/CD containers, or their agents/workers, like 
+		buildbot, gocd or jenkins should be built on top of this image.
+	 
+	gitea-build: SCM
+		A Git SCM server than can be used as change source by the CI/CD.
+		
+		
 	buildbot-build: CI/CD
-    
-  	devop-build: 
-  		A base container image that containes git, gcc, make, jdk-11, gradle.
-  		All other CI/CD container should be built from this image.
-  	 
-  	gitea-build: 
-  	
-  	gocd-build:
 
-  	jenkins-build:
+	gocd-build:
+
+	jenkins-build:
