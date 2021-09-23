@@ -1,0 +1,16 @@
+Making a Devops container farm with Podman
+
+Containers
+	All container images are built very much beginning from the Alpine:3 image.
+
+	buildbot-build: CI/CD
+    
+  	devop-build: 
+  		A base container image that containes git, gcc, make, jdk-11, gradle.
+  		All other CI/CD container should be built from this image.
+  	 
+  	gitea-build: 
+  	
+  	gocd-build:
+
+  	jenkins-build:
