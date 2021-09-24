@@ -1,8 +1,18 @@
 Making a Devops container farm with Podman
 
-Containers
 	All container images are built from the Alpine:3 image. Use Alpine 
-	Package Manager, "apk add", to install new packages.
+Package Manager, "apk add", to install new packages.
+	
+	Run podman-init.sh script at first.  It creates network and storage 
+used by the containers.
+	
+	Each build folder containes a Containerfile file and some compressed
+external file(s) that needed by the container image. Enter each folder and run 
+"podman build . -t <tag>".  You should download and copy that external file(s) 
+as TAR.XZ compressed before build the container.  Or update the Containerfile 
+file and change compress method/type as best for you.
+
+Containers
 
 	devop-build: 
 		The base container image that containes development tools like 
