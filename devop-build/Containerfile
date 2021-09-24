@@ -9,7 +9,7 @@ COPY gradle.tar.xz /tmp
 RUN set -xe ; \
 	#
 	# install some utility packages
-	apk add xz coreutils git gcc make linux-headers openjdk11 python3; \
+	apk add coreutils bash xz git gcc make linux-headers openjdk11 python3;\
 	#
 	# extract gradle
 	tar xvf /tmp/gradle.tar.xz -C /opt; \
