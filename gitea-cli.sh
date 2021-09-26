@@ -8,4 +8,4 @@ podman run -it --rm \
 	--ip "192.167.55.141" \
 	--replace=true \
 	--volume devopsc:/var/gitrepo \
-	ao/devopsc-gitea ash
+	ao/gitea-sc:alpine3 bash

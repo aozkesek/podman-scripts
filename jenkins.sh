@@ -9,4 +9,4 @@ podman run -it --rm \
 	-p 8080:8080 \
 	--replace=true \
 	--volume devopci:/var/www/jenkins \
-	ao/devopci-jenkins $1 $2 $3
+	ao/jenkins-ci:alpine3 $1 $2 $3

@@ -8,4 +8,4 @@ podman run -it --rm \
 	--ip "192.167.55.131" \
 	--replace=true \
 	--volume devopci:/var/www/jenkins \
-	ao/devopci-jenkins ash
+	ao/jenkins-ci:alpine3 bash

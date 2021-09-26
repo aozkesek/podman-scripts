@@ -7,7 +7,7 @@ COPY gitea.tar.xz /tmp
 RUN set -xe ; \
 	#
 	# install git  
-	apk add xz git; \
+	apk add coreutils bash xz git; \
 	#
 	# extract, rename and make executable the gitea
 	tar xvf /tmp/gitea.tar.xz -C /usr/bin; \

@@ -9,4 +9,4 @@ podman run -d --rm \
 	-p 8081:8081 \
 	--replace=true \
 	--volume devopsc:/var/gitrepo \
-	ao/devopsc-gitea $1 $2 $3 $4
+	ao/gitea-sc:alpine3 $1 $2 $3 $4
