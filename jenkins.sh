@@ -1,6 +1,6 @@
 #!/bin/bash
 
-podman run -d --rm \
+podman run -it --rm \
 	--name jenkinsci \
 	--network br192-168 \
 	--hostname jenkinsci \
@@ -9,4 +9,4 @@ podman run -d --rm \
 	-p 8080:8080 \
 	--replace=true \
 	--volume devopci:/var/www/jenkins \
-	ao/devopci-jenkins
+	ao/devopci-jenkins $1 $2 $3
