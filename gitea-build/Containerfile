@@ -1,17 +1,14 @@
-FROM alpine:3
+FROM ao/alpine3
 
 ENV GITREPO=/var/gitrepo
 
-COPY gitea.tar.xz /tmp
+COPY gitea.xz /usr/bin
 
 RUN set -xe ; \
 	#
-	# install git  
-	apk add coreutils bash xz git; \
-	#
 	# extract, rename and make executable the gitea
-	tar xvf /tmp/gitea.tar.xz -C /usr/bin; \
-	mv /usr/bin/gitea-1.15.2 /usr/bin/gitea; \
+	cd /usr/bin; \
+	xz -d gitea.xz; \
 	chown root /usr/bin/gitea; \
 	chgrp root /usr/bin/gitea; \
 	chmod +x /usr/bin/gitea; \

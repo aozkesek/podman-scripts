@@ -1,0 +1,15 @@
+services:
+  scm:
+    image: ao/gitea-sc:alpine3
+    ports:
+      - "8081:8081"
+    volumes: 
+      - "scm:/var/gitrepo"
+
+  cid:
+    image: ao/jenkins-ci:alpine3
+    ports:
+      - "8080:8080"
+    volumes:
+      - "cid:/var/www/jenkins"
+

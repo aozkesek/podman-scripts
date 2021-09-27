@@ -1,6 +1,6 @@
 #!/bin/bash
 
-podman run -it --rm \
+podman run -d --rm \
 	--name jenkinsci \
 	--network br192-168 \
 	--hostname jenkinsci \
