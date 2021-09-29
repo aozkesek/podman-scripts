@@ -1,6 +1,5 @@
-FROM alpine:3
+FROM ao/alpine3
 
-#ENV JAVA_HOME="$(dirname $(dirname $(realpath $(which javac))))"
 ENV GRADLE_HOME="/opt/gradle"
 ENV PATH="$GRADLE_HOME/bin:$PATH"
 
@@ -9,7 +8,7 @@ COPY gradle.tar.xz /tmp
 RUN set -xe ; \
 	#
 	# install some utility packages
-	apk add xz coreutils git gcc make linux-headers openjdk11 python3; \
+	apk add gcc make linux-headers openjdk11 python3;\
 	#
 	# extract gradle
 	tar xvf /tmp/gradle.tar.xz -C /opt; \
@@ -18,9 +17,10 @@ RUN set -xe ; \
 	chmod +x $GRADLE_HOME/bin/gradle; \
 	#
 	# do some test
-	git --version; \
+	gcc --version; \
+	python --version; \
 	javac -version; \
 	gradle -version;
 
-CMD sh
+CMD bash
 

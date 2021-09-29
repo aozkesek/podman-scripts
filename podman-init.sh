@@ -2,7 +2,7 @@
 
 # create common volumes
 #podman volume create devopsc 
-#'podman volume create devopci 
+#podman volume create devopci 
 
 # create common network
 podman network rm podman

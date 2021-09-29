@@ -39,11 +39,11 @@ c['change_source'] = []
 # In this case, just kick off a 'runtests' build
 
 hourly_gitfetch = schedulers.Periodic(name="hourly_git_fetch", 
-									 builderName="build_rbt", 
-									 periodicBuildTimer=3600)
+					builderName="build_rbt", 
+					periodicBuildTimer=3600)
 build_rbt = util.BuilderConfig(name="build_rbt",
-							   workernames=["localworker"],
-							   factory=factory)
+				workernames=["localworker"],
+				factory=factory)
 c['schedulers'] = [hourlyGitFetch]
 
 ####### BUILDERS

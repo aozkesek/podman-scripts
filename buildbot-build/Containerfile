@@ -3,7 +3,6 @@ FROM ao/devop:alpine3
 ENV BUILD_HOME="/var/buildbot"
 ENV MASTER=$BUILD_HOME/master
 ENV WORKER=$BUILD_HOME/worker
-ENV PATH="$GRADLE_HOME/bin:$PATH"
 
 COPY master.py /tmp/master.cfg
 COPY buildbot-start /usr/bin
