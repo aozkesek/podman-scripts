@@ -2,7 +2,7 @@ FROM ao/devop:alpine3
 
 ENV JENKINS_HOME="/var/www/jenkins" 
 
-COPY jenkins.war /var/www/
+COPY jenkins.tar.xz /var/www/
 
 RUN set -xe ; \
 	#
@@ -11,6 +11,9 @@ RUN set -xe ; \
 	#
 	# install required packages for jenkins
 	apk add freetype font-xfree86-type1; \
+	#
+	# extract war
+	tar xvf /var/www/jenkins.tar.xz -C /var/www; \
 	#
 	# do basic tests
 	java -jar /var/www/jenkins.war --usage ;
