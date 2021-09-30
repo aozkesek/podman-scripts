@@ -1,50 +1,46 @@
 services:
-  gitea-scm:
-    container_name: "gitea-scm"
-    image: "ao/gitea-sc:alpine3"
+  
+  giteascm:
+    container_name: giteascm
+    image: ao/giteascm:alpine3
+    build: /home/ahmetozkesek/workspaces/podman/gitea-build
     ports: 
       - "8081:8081"
-    hostname: "giteascm"
-    dns: "192.167.55.1"
+    hostname: giteascm
     volumes: 
-      - "scm-vol:/var/gitrepo"
-    network_mode: host
+      - "scm_data_vol:/var/gitrepo"
     networks:
-      br192_167:
-        ipv4_address: "192.167.55.130" 
+      - br192_167
 
-  jenkins-cid:
-    container_name: "jenkins-cid"
+  jenkinscid:
+    container_name: jenkinscid
     depends_on: 
-      - gitea-scm
-    image: "ao/jenkins-ci:alpine3"
+      - giteascm
+    image: ao/jenkinscid:alpine3
+    build: /home/ahmetozkesek/workspaces/podman/jenkins-build
     ports: 
       - "8080:8080"
-    hostname: "jenkinscid"
-    dns: "192.167.55.1"
-    extra_hosts:
-      - "giteascm:192.167.55.130"
+    hostname: jenkinscid
     volumes: 
-      - "cid-vol:/var/www/jenkins"
-    network_mode: host
+      - "cid_data_vol:/var/www/jenkins"
     networks:
-      br192_167:
-        ipv4_address: "192.167.55.131" 
+      - br192_167
 
 volumes:
-  scm-vol:
-    name: "scm-vol"
+  scm_data_vol:
+    name: scm_data_vol
     driver: local
-  cid-vol:
-    name: "cid-vol"
+
+  cid_data_vol:
+    name: cid_data_vol
     driver: local
 
 networks:
   br192_167:
-    name: "br192_167"
+    name: br192_167
     ipam:
       driver: bridge
       config:
-        - subnet: "192.167.55.0/24"
-        - ip_range: "192.167.55.128/25"
-        - gateway: "192.167.55.1"
+        - subnet: "192.167.100.0/24"
+        - ip_range: "192.167.100.1/25"
+        - gateway: "192.167.100.1"

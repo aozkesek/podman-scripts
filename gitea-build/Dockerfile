@@ -1,4 +1,4 @@
-FROM ao/alpine3
+FROM ao/alpine:3
 
 ENV GITREPO=/var/gitrepo
 
@@ -16,8 +16,8 @@ RUN set -xe ; \
 	# do basic tests
 	gitea --version; 
 
-VOLUME [ "$GITREPO" ]
-WORKDIR "$GITREPO"
+VOLUME $GITREPO
+WORKDIR $GITREPO
 EXPOSE 8081
 
 CMD gitea \
