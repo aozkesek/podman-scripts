@@ -6,9 +6,8 @@ COPY gitea.xz /usr/bin
 
 RUN set -xe ; \
 	#
-	# extract, rename and make executable the gitea
-	cd /usr/bin; \
-	xz -d gitea.xz; \
+	# extract the gitea
+	xz -d /usr/bin/gitea.xz; \
 	chown root /usr/bin/gitea; \
 	chgrp root /usr/bin/gitea; \
 	chmod +x /usr/bin/gitea; \

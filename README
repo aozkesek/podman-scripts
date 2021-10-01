@@ -1,33 +1,31 @@
 Making a Devops container farm with Podman
 
+	Please go https://podman.io/ for more help.
+	
 	All container images are built from the Alpine:3 image. Use Alpine 
 Package Manager, "apk add", to install new packages.
 	
-	Run podman-init.sh script at first.  It creates network and storage 
-used by the containers.
-	
-	Each build folder containes a Containerfile file and some compressed
-external file(s) that needed by the container image. Enter each folder and run 
-"podman build . -t <tag>".  You should download and copy that external file(s) 
-as TAR.XZ compressed before build the container.  Or update the Containerfile 
-file and change compress method/type as best for you.
+	Each build folder containes a Dockerfile file and some compressed
+external file(s) that needed by the container image. To build a container image
+run "podman build <path-to-dockerfile> -t <tag>".  
 
 Containers
 
-	devop-build: 
-		The base container image that containes development tools like 
-		git, gcc, make, jdk-11, gradle.  You can add others upon you 
-		need with "apk add <packagename>" alpine package manager.
+	alpine3-build:
+		This image is the base for every other image.  It uses Alpine:3
+		and add some core packages in it such as bash, xz, git, and
+		coreutils.
 		
-		The other CI/CD containers, or their agents/workers, like 
-		buildbot, gocd or jenkins should be built on top of this image.
+	devops-build: 
+		It extends alpine3 image and adds some development packages or 
+		build tools like gcc, make, jdk-11, gradle.  Used by any CI/CD 
+		tool images. Other package(s) can be added by 
+		"apk add <packagename>" alpine package manager.
 	 
 	gitea-build: SCM
-		A Git SCM server than can be used as change source by the CI/CD.
-		
-		
-	buildbot-build: CI/CD
+		A simple, easy to use and configure Git SCM server.  It's free
+		and opensource. You can download it from https://gitea.io
 
-	gocd-build:
-
-	jenkins-build:
+	CI/CD Tools;
+		jenkins, buildbot or gocd are free and opensource.  I picked 
+	jenkins here.
