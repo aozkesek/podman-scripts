@@ -1,3 +1,3 @@
 #!/usr/bin/bash
 
-podman container stop jenkinscid giteascm
+podman pod stop devops
