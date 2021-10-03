@@ -7,6 +7,8 @@ RUN set -xe ; \
 	# 
 	# test java
 	java --version; 
+	
+VOLUME /var/apps
 
 CMD bash
 
