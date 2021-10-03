@@ -1,27 +1,32 @@
 FROM ao/alpine:3
 
-ENV GRADLE_HOME="/opt/gradle"
-ENV PATH="$GRADLE_HOME/bin:$PATH"
+ENV PATH="/opt/gradle/bin:/opt/apache-maven/bin:$PATH"
 
 COPY gradle.tar.xz /tmp
+COPY apache-maven.tar.xz /tmp
 
 RUN set -xe ; \
 	#
-	# extract gradle
+	# extract gradle and maven
 	xz -d /tmp/gradle.tar.xz; \
+	xz -d /tmp/apache-maven.tar.xz; \
 	tar xf /tmp/gradle.tar -C /opt; \
-	chown -R root $GRADLE_HOME; \
-	chgrp -R root $GRADLE_HOME; \
-	chmod +x $GRADLE_HOME/bin/gradle; \
+	tar xf /tmp/apache-maven.tar -C /opt; \
+	rm /tmp/gradle.tar /tmp/apache-maven.tar; \
+	chown -R root /opt/gradle /opt/apache-maven; \
+	chgrp -R root /opt/gradle /opt/apache-maven; \
+	chmod +x /opt/gradle/bin/gradle /opt/apache-maven/bin/mvn; \
 	#
 	# install some utility packages
-	apk add gcc make linux-headers openjdk11 python3;\
+	apk add build-base linux-headers openjdk11 python3;\
 	#
 	# do some test
 	gcc --version; \
+	make --version; \
 	python3 --version; \
 	javac -version; \
-	gradle -version;
+	gradle -version; \
+	mvn --version;
 
 CMD bash
 

@@ -3,11 +3,11 @@ Making a Devops container farm with Podman
 	Please go https://podman.io/ for more help.
 	
 	All container images are built from the Alpine:3 image. Use Alpine 
-Package Manager, "apk add", to install new packages.
+Package Manager, "apk add", to customize the container image.
 	
 	Each build folder containes a Dockerfile file and some compressed
 external file(s) that needed by the container image. To build a container image
-run "podman build <path-to-dockerfile> -t <tag>".  
+run "podman build <path-to-dockerfile> -t <tag>". 
 
 Containers
 
