@@ -1,11 +1,11 @@
 services:
   ao-alpine3:
     build: ./alpine3-build
-    image: "ao/alpine3"
+    image: "ao/alpine:3"
     
-  ao-devop:
-    build: ./devop-build
-    image: "ao/devop:alpine3"
+  ao-devops:
+    build: ./devops-build
+    image: "ao/devops:3"
     extends:
       service: ao-alpine3
       
@@ -13,7 +13,7 @@ services:
     extends:
       service: ao-alpine3      
     build: ./gitea-build
-    image: "ao/gitea-sc:alpine3"
+    image: "ao/giteascm"
     container_name: giteascm
     hostname: giteascm
     ports:
@@ -25,9 +25,9 @@ services:
  
   jenkinscid:
     extends:
-      service: ao-devop
+      service: ao-devops
     build: ./jenkins-build
-    image: "ao/jenkins-ci:alpine3"
+    image: "ao/jenkinscid"
     container_name: jenkinscid
     depends_on: 
       - giteascm

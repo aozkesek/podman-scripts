@@ -1,4 +1,4 @@
-FROM ao/devop:alpine3
+FROM ao/devops:3
 
 ENV JENKINS_HOME="/var/www/jenkins" 
 
@@ -7,12 +7,10 @@ COPY jenkins.war.xz /tmp
 RUN set -xe ; \
 	#
 	# create jenkins folder
-	mkdir -p $JENKINS_HOME ; \
-	#
+	mkdir -p $JENKINS_HOME; \
 	# extract war
-	cd /var/www; \
-	mv /tmp/jenkins.war.xz .; \
-	xz -d jenkins.war.xz; \
+	mv /tmp/jenkins.war.xz /var/www; \
+	xz -d /var/www/jenkins.war.xz; \
 	chown root /var/www/jenkins.war; \
 	chgrp root /var/www/jenkins.war; \
 	#
@@ -22,7 +20,7 @@ RUN set -xe ; \
 	# do basic tests
 	java -jar /var/www/jenkins.war --usage ;
 
-VOLUME [ "$JENKINS_HOME" ]
+VOLUME $JENKINS_HOME
 
 WORKDIR /var/www/
 

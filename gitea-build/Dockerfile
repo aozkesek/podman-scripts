@@ -1,4 +1,4 @@
-FROM ao/alpine3
+FROM ao/alpine:3
 
 ENV GITREPO=/var/gitrepo
 
@@ -6,19 +6,17 @@ COPY gitea.xz /usr/bin
 
 RUN set -xe ; \
 	#
-	# extract, rename and make executable the gitea
-	cd /usr/bin; \
-	xz -d gitea.xz; \
+	# extract the gitea
+	xz -d /usr/bin/gitea.xz; \
 	chown root /usr/bin/gitea; \
 	chgrp root /usr/bin/gitea; \
 	chmod +x /usr/bin/gitea; \
 	#
 	# do basic tests
-	gitea --version; \
-	git --version; 
+	gitea --version; 
 
-VOLUME [ "$GITREPO" ]
-WORKDIR "$GITREPO"
+VOLUME $GITREPO
+WORKDIR $GITREPO
 EXPOSE 8081
 
 CMD gitea \
