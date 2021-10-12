@@ -1,13 +1,16 @@
 #!/usr/bin/bash
 
-OPS="-n devops -p 8080:8080 -p 8081:8081"
-SCM="--pod devops --name giteascm -v scm_data:/var/gitrepo"
-CID="--pod devops --name jenkinscid -v cid_data:/var/www/jenkins"
+# pod
+POD="-n devops -p 8080-8081:8080-8081"
+
+# containers
+SCM="--pod devops --replace --name giteascm -v scm_data:/var/gitrepo"
+CID="--pod devops --replace --name jenkinscid -v cid_data:/var/www/jenkins -v stock_apps:/apps"
 
 # create a pod named devops if it doesn't exist
-podman pod exists devops || podman pod create $OPS
+podman pod exists devops || podman pod create $POD
 
-# create devops containers if they don't exist
-podman pod inspect devops|grep "giteascm" || podman create $SCM ao/giteascm
-podman pod inspect devops|grep "jenkinscid" || podman create $CID ao/jenkinscid
-
+#podman pod inspect devops|grep "giteascm" || 
+podman create $SCM ao/giteascm
+#podman pod inspect devops|grep "jenkinscid" || 
+podman create $CID ao/jenkinscid

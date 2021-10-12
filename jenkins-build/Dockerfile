@@ -1,13 +1,11 @@
 FROM ao/devops:3
 
-ENV JENKINS_HOME="/var/www/jenkins" 
-
 COPY jenkins.war.xz /tmp
 
 RUN set -xe ; \
 	#
 	# create jenkins folder
-	mkdir -p $JENKINS_HOME; \
+	mkdir -p /var/www/jenkins; \
 	# extract war
 	mv /tmp/jenkins.war.xz /var/www; \
 	xz -d /var/www/jenkins.war.xz; \
@@ -20,7 +18,10 @@ RUN set -xe ; \
 	# do basic tests
 	java -jar /var/www/jenkins.war --usage ;
 
-VOLUME $JENKINS_HOME
+ENV JENKINS_HOME=/var/www/jenkins
+
+VOLUME /var/www/jenkins
+VOLUME /apps
 
 WORKDIR /var/www/
 
