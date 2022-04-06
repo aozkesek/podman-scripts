@@ -1,11 +1,11 @@
-FROM alpine:3
+FROM ao/alpine:3
 
 COPY sshd_config /tmp
 
 RUN set -xe ; \
 	#
 	# install git prerequired packages 
-	apk add coreutils xz bash openssh openrc openjdk11-jre-headless; \
+	apk add openrc openjdk11-jre-headless; \
 	#
 	# add sshd as service
 	mv /tmp/sshd_config /etc/ssh/ ; \
