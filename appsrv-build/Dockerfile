@@ -5,7 +5,7 @@ COPY sshd_config /tmp
 RUN set -xe ; \
 	#
 	# install git prerequired packages 
-	apk add openrc openjdk11-jre-headless; \
+	apk add openrc openjdk17-jre-headless; \
 	#
 	# add sshd as service
 	mv /tmp/sshd_config /etc/ssh/ ; \
