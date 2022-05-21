@@ -18,6 +18,7 @@ RUN set -xe ; \
 VOLUME $GITREPO
 WORKDIR $GITREPO
 EXPOSE 8081
+USER 1000:1000
 
 CMD gitea \
 	--config $GITREPO/custom/conf/app.ini \
