@@ -1,4 +1,4 @@
-FROM ao/devops:3
+FROM ao/devops:alpine
 
 COPY jenkins.war.xz /tmp
 

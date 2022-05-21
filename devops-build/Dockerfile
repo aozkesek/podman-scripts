@@ -18,7 +18,7 @@ RUN set -xe ; \
 	chmod +x /opt/gradle/bin/gradle /opt/apache-maven/bin/mvn; \
 	#
 	# install some utility packages
-	apk add build-base linux-headers openjdk11 python3;\
+	apk add build-base linux-headers openjdk11-jdk openjdk11-jre-headless python3;\
 	#
 	# do some test
 	gcc --version; \
