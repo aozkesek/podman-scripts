@@ -21,3 +21,6 @@ sh rebuild.sh ao/jenkinsci:alpine jenkins-build $1
 if [[ "$?" != "0" ]]; then exit 1; fi
 
 podman images
+
+# make sure pod devops has the new images again
+sh devops-create.sh
