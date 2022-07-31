@@ -2,15 +2,15 @@ FROM ao/alpine:3
 
 ENV GITREPO=/var/gitrepo
 
-COPY gitea.xz /usr/bin
+COPY gitea-1.16.9-linux-amd64 /usr/bin
 
 RUN set -xe ; \
 	#
 	# extract the gitea
-	xz -d /usr/bin/gitea.xz; \
-	chown root /usr/bin/gitea; \
-	chgrp root /usr/bin/gitea; \
-	chmod +x /usr/bin/gitea; \
+	chown root /usr/bin/gitea-1.16.9-linux-amd64; \
+	chgrp root /usr/bin/gitea-1.16.9-linux-amd64; \
+	chmod +x /usr/bin/gitea-1.16.9-linux-amd64; \
+	ln -s /usr/bin/gitea-1.16.9-linux-amd64 /usr/bin/gitea; \
 	#
 	# do basic tests
 	gitea --version; 

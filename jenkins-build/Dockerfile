@@ -1,14 +1,13 @@
 FROM ao/devops:alpine
 
-COPY jenkins.war.xz /tmp
+COPY jenkins.war /tmp
 
 RUN set -xe ; \
 	#
 	# create jenkins folder
 	mkdir -p /var/www/jenkins; \
 	# extract war
-	mv /tmp/jenkins.war.xz /var/www; \
-	xz -d /var/www/jenkins.war.xz; \
+	mv /tmp/jenkins.war /var/www; \
 	chown root /var/www/jenkins.war; \
 	chgrp root /var/www/jenkins.war; \
 	#
